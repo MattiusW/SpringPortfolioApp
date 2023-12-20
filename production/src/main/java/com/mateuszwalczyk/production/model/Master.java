@@ -17,7 +17,7 @@ public class Master {
     private String name;
     private int age;
 
-    public Master(){
+    private Master(){
 
     }
 
