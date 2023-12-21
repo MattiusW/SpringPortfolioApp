@@ -6,20 +6,21 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 @Entity
 public class Worker {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
     private String name;
     private String ability;
 
     private BigDecimal payment;
     private int level;
 
-    private Worker(int id, String name, String ability, BigDecimal payment, int level){
+    private Worker(Long id, String name, String ability, BigDecimal payment, int level){
         this.id = id;
         this.name = name;
         this.ability = ability;
@@ -28,14 +29,14 @@ public class Worker {
     }
 
     public static class WorkerBuilder {
-        private int id;
+        private Long id;
         private String name;
         private String ability;
 
         private BigDecimal payment;
         private int level;
 
-        public WorkerBuilder setId(int id) {
+        public WorkerBuilder setId(Long id) {
             this.id = id;
             return this;
         }
@@ -65,7 +66,7 @@ public class Worker {
         }
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
@@ -83,6 +84,33 @@ public class Worker {
 
     public int getLevel() {
         return level;
+    }
+
+    private void standardWorker(){
+
+        Worker workerOne = new Worker.WorkerBuilder()
+                .setId(1L)
+                .setName("Marcin")
+                .setAbility("Operator")
+                .setLevel(1)
+                .setPayment(new BigDecimal(2000.00).setScale(2, RoundingMode.HALF_UP))
+                .buildWorker();
+
+        Worker workerTwo = new Worker.WorkerBuilder()
+                .setId(2L)
+                .setName("Krzysiu")
+                .setAbility("Mechanik")
+                .setLevel(1)
+                .setPayment(new BigDecimal(3500.00).setScale(2, RoundingMode.HALF_UP))
+                .buildWorker();
+
+        Worker workerThree = new Worker.WorkerBuilder()
+                .setId(3L)
+                .setName("Darek")
+                .setAbility("Operator")
+                .setLevel(1)
+                .setPayment(new BigDecimal(2000.00).setScale(2, RoundingMode.HALF_UP))
+                .buildWorker();
     }
 
     @Override
