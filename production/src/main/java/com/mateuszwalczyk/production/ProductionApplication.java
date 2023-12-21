@@ -1,27 +1,58 @@
 package com.mateuszwalczyk.production;
 
+import com.mateuszwalczyk.production.controller.WorkerController;
+import com.mateuszwalczyk.production.model.Master;
 import com.mateuszwalczyk.production.model.Worker;
+import com.mateuszwalczyk.production.repository.MasterRepository;
+import com.mateuszwalczyk.production.repository.WorkerRepository;
+import jakarta.annotation.PostConstruct;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.Bean;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 @SpringBootApplication
-public class ProductionApplication {
+public class ProductionApplication implements CommandLineRunner {
+
+	@Autowired
+	WorkerRepository workerRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProductionApplication.class, args);
-
-		Worker workerOne = new Worker.WorkerBuilder()
-				.setId(1)
-				.setName("Krzysiu")
-				.setAbility("Operator")
-				.setPayment(new BigDecimal(2000.00).setScale(2, RoundingMode.HALF_UP))
-				.setLevel(1)
-				.buildWorker();
-
-		System.out.println(workerOne);
 	}
 
+	@Override
+	public void run(String... args) throws Exception{
+
+		Worker standardWorkerOne = new Worker.WorkerBuilder()
+				.setName("Krzysiu")
+				.setAbility("mechanik")
+				.setPayment(new BigDecimal(3000.00).setScale(2, RoundingMode.HALF_UP))
+				.buildWorker();
+
+		Worker standardWorkerTwo = new Worker.WorkerBuilder()
+				.setName("Marcin")
+				.setAbility("operator")
+				.setPayment(new BigDecimal(2000.00).setScale(2, RoundingMode.HALF_UP))
+				.buildWorker();
+
+		Worker standardWorkerThree = new Worker.WorkerBuilder()
+				.setName("Rafal")
+				.setAbility("operator")
+				.setPayment(new BigDecimal(2000.00).setScale(2, RoundingMode.HALF_UP))
+				.buildWorker();
+
+		workerRepository.save(standardWorkerOne);
+		workerRepository.save(standardWorkerTwo);
+		workerRepository.save(standardWorkerThree);
+	}
 }
