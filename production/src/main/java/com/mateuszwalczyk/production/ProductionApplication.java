@@ -1,9 +1,5 @@
 package com.mateuszwalczyk.production;
-
-import com.mateuszwalczyk.production.controller.WorkerController;
-import com.mateuszwalczyk.production.model.Master;
 import com.mateuszwalczyk.production.model.Worker;
-import com.mateuszwalczyk.production.repository.MasterRepository;
 import com.mateuszwalczyk.production.repository.WorkerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -37,7 +33,6 @@ public class ProductionApplication implements CommandLineRunner {
 				.setAbility("operator")
 				.setPayment(new BigDecimal(2000.00).setScale(2, RoundingMode.HALF_UP))
 				.buildWorker();
-
 
 		workerRepository.save(standardWorkerOne);
 		workerRepository.save(standardWorkerTwo);
