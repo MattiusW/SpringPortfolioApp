@@ -1,6 +1,8 @@
 package com.mateuszwalczyk.production;
+import com.mateuszwalczyk.production.controller.WorkerController;
 import com.mateuszwalczyk.production.model.Worker;
 import com.mateuszwalczyk.production.repository.WorkerRepository;
+import com.mateuszwalczyk.production.service.WorkerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -13,7 +15,7 @@ import java.math.RoundingMode;
 public class ProductionApplication implements CommandLineRunner {
 
 	@Autowired
-	WorkerRepository workerRepository;
+	WorkerController workerController;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProductionApplication.class, args);
@@ -25,16 +27,18 @@ public class ProductionApplication implements CommandLineRunner {
 		Worker standardWorkerOne = new Worker.WorkerBuilder()
 				.setName("Krzysiu")
 				.setAbility("mechanik")
-				.setPayment(new BigDecimal(3000.00).setScale(2, RoundingMode.HALF_UP))
+				.setPayment(new BigDecimal(2000.00).setScale(2, RoundingMode.HALF_UP))
 				.buildWorker();
 
 		Worker standardWorkerTwo = new Worker.WorkerBuilder()
 				.setName("Marcin")
 				.setAbility("operator")
-				.setPayment(new BigDecimal(2000.00).setScale(2, RoundingMode.HALF_UP))
+				.setPayment(new BigDecimal(1000.00).setScale(2, RoundingMode.HALF_UP))
 				.buildWorker();
 
-		workerRepository.save(standardWorkerOne);
-		workerRepository.save(standardWorkerTwo);
+		workerController.createWorker(standardWorkerOne);
+		workerController.createWorker(standardWorkerTwo);
+
 	}
+
 }

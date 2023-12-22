@@ -3,12 +3,11 @@ package com.mateuszwalczyk.production.controller;
 import com.mateuszwalczyk.production.model.Worker;
 import com.mateuszwalczyk.production.service.WorkerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-
+@Controller
 public class WorkerController {
 
     @Autowired
