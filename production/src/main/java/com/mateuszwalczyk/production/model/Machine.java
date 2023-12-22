@@ -14,9 +14,9 @@ public class Machine {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private int durability;
-    private int quantity;
-    private TimeUnit workTime;
+    private int durability = 100;
+    private int quantity = 0;
+    private TimeUnit workTime = TimeUnit.MINUTES;
 
     private Machine(){
 
@@ -33,9 +33,9 @@ public class Machine {
     public static class MachineBuilder {
         private Long id;
         private String name;
-        private int durability;
-        private int quantity;
-        private TimeUnit workTime;
+        private int durability = 100;
+        private int quantity = 0;
+        private TimeUnit workTime = TimeUnit.MINUTES;
 
         public MachineBuilder(){
 
