@@ -7,23 +7,26 @@ import java.util.concurrent.TimeUnit;
 @Entity
 public class Machine {
 
-    public String name;
-    public int durability;
-    public int quantity;
-    public TimeUnit workTime;
+    private Long id;
+    private String name;
+    private int durability;
+    private int quantity;
+    private TimeUnit workTime;
 
     private Machine(){
 
     }
 
-    private Machine(String name, int durability, int quantity, TimeUnit workTime){
+    private Machine(Long id, String name, int durability, int quantity, TimeUnit workTime){
+        this.id = id;
         this.name = name;
         this.durability = durability;
         this.quantity = quantity;
         this.workTime = workTime;
     }
 
-    public class MachineBuilder {
+    public static class MachineBuilder {
+        private Long id;
         private String name;
         private int durability;
         private int quantity;
@@ -31,6 +34,11 @@ public class Machine {
 
         public MachineBuilder(){
 
+        }
+
+        public MachineBuilder setId(Long id){
+            this.id = id;
+            return this;
         }
 
         public MachineBuilder setName(String name) {
@@ -54,9 +62,14 @@ public class Machine {
         }
 
         public Machine buildMachine() {
-            return new Machine(name, durability, quantity, workTime);
+            return new Machine(id, name, durability, quantity, workTime);
         }
     }
+
+    public Long getId(){
+        return id;
+    }
+
     public String getName() {
         return name;
     }
@@ -75,7 +88,7 @@ public class Machine {
 
     @Override
     public String toString(){
-        return "Machine: " + getName() + "| durability" + getDurability() + "| quantity" + getQuantity() +
-                "| work time: " + getWorkTime();
+        return "ID: " + getId() + " | machine: " + getName() + " | durability" + getDurability() + " | quantity" + getQuantity() +
+                " | work time: " + getWorkTime();
     }
 }
