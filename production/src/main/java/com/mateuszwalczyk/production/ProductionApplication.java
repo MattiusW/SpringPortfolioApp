@@ -38,14 +38,8 @@ public class ProductionApplication implements CommandLineRunner {
 				.setPayment(new BigDecimal(2000.00).setScale(2, RoundingMode.HALF_UP))
 				.buildWorker();
 
-		Worker standardWorkerThree = new Worker.WorkerBuilder()
-				.setName("Rafal")
-				.setAbility("operator")
-				.setPayment(new BigDecimal(2000.00).setScale(2, RoundingMode.HALF_UP))
-				.buildWorker();
 
 		workerRepository.save(standardWorkerOne);
 		workerRepository.save(standardWorkerTwo);
-		workerRepository.save(standardWorkerThree);
 	}
 }
