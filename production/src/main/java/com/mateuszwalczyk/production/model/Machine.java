@@ -1,12 +1,17 @@
 package com.mateuszwalczyk.production.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import org.springframework.stereotype.Component;
 
 import java.util.concurrent.TimeUnit;
-
 @Entity
 public class Machine {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private int durability;
