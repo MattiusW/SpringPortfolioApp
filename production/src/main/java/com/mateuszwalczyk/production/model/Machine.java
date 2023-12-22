@@ -57,5 +57,25 @@ public class Machine {
             return new Machine(name, durability, quantity, workTime);
         }
     }
+    public String getName() {
+        return name;
+    }
 
+    public int getDurability() {
+        return durability;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public TimeUnit getWorkTime() {
+        return workTime;
+    }
+
+    @Override
+    public String toString(){
+        return "Machine: " + getName() + "| durability" + getDurability() + "| quantity" + getQuantity() +
+                "| work time: " + getWorkTime();
+    }
 }
