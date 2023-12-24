@@ -5,6 +5,8 @@ import com.mateuszwalczyk.production.repository.MachineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MachineService {
 
@@ -15,4 +17,7 @@ public class MachineService {
         return machineRepository.save(machine);
     }
 
+    public List<Machine> getAllMachine(){
+        return machineRepository.getAllMachine();
+    }
 }
