@@ -18,7 +18,7 @@ public class WorkerController {
     @Autowired
     WorkerService workerService;
 
-    @PostMapping
+    @PostMapping("/post/worker")
     public Worker createWorker(@RequestBody Worker worker){
         return workerService.saveWorker(worker);
     }
