@@ -24,6 +24,7 @@ export default function Workers () {
               <th scope='col'>Ability</th>
               <th scope='col'>Payment</th>
               <th scope='col'>Level</th>
+              <th scope='col'>Action</th>
             </tr>
           </thead>
           <tbody>
